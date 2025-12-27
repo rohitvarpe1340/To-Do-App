@@ -1,0 +1,22 @@
+.nav{
+  background-color: rgb(57, 54, 54);
+  color: white;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content:space-between ;
+  padding: 0 20px;
+}
+.brand{
+  font-size: 30px;
+  margin: 0;
+  
+}
+.nav-links{
+  list-style: none;
+  margin: 0;
+  display: flex;
+  gap: 40px;
+  padding: 0;
+  margin-right: 70px;
+}

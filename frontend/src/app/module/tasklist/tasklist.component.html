@@ -1,0 +1,66 @@
+<div class="card p-4 mt-4 shadow-sm">
+  <h3 class="mb-4 text-center">Task List</h3>
+
+  <div *ngIf="loading" class="text-center mb-3">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="table-light">
+        <tr >
+          <th>ID</th>
+          <th>Task</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of tasks">
+          <td>{{ t.id }}</td>
+          <td>{{ t.tittle }}</td>
+          <td>{{ t.description || '-' }}</td>
+          <td>
+            <button class="btn btn-sm btn-primary me-2" (click)="openUpdateModal(t)" >Update</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteTask(t.id)">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="tasks.length === 0">
+          <td colspan="4" class="text-center">No tasks found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateModalLabel">Update Task</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label class="form-label">Task</label>
+            <input type="text" class="form-control" [(ngModel)]="currentTask.tittle" name="taskName">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" rows="4" [(ngModel)]="currentTask.description" name="description"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="saveTask()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
